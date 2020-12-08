@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 
 class TodoItem extends Component {
-    onClick1 = (event) => {
+    onClickToUpdate = (event) => {
         this.props.updateStatus(this.props.todo);
     }
 
-    onClick2 = (event) => {
+    onClickToDelete = (event) => {
         this.props.deleteItem(this.props.todo);
     }
 
     render() {
+        const cross = {
+            textDecorationLine: this.props.todo.done ? 'line-through' : ''
+        };
+
         return (
             <div>
-                <button onClick={this.onClick1}>{this.props.todo.text}</button>
-                <button onClick={this.onClick2}>X</button>
+                <button style={cross} onClick={this.onClickToUpdate}>{this.props.todo.text}</button>
+                <button onClick={this.onClickToDelete}>X</button>
             </div>
         );
     }
