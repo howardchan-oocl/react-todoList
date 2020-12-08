@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
-import TodoItem from './TodoItem';
+import TodoItemContainer from '../Containers/TodoItemContainer';
 import { v4 as uuidv4 } from 'uuid';
 
 class TodoGroup extends Component {
-    initArraySize = (size) => {
-        const number = parseInt(size) > 0 ? parseInt(size) : 0;
-        return Array.from(Array(number));
-    }
-    
     render() {
-        const size = this.props.size;
-        const initArraySize = this.initArraySize(size);
+        const todoItem = this.props.todoList.map((todo)=>(
+            <TodoItemContainer todo={todo}/>
+        ));
 
         return (
             <div>
-                {initArraySize.map(() =>
-                    <TodoItem key={uuidv4()} />
-                )}
+                {todoItem}
             </div>
         );
     }

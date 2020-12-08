@@ -1,21 +1,22 @@
-import { combineReducers } from 'redux';
 import { ADD, DELETE, UPDATE } from './actionTypes';
 
-const todo = (todoList = [], action) => {
+const todoList = (todoList = [], action) => {
     if (action.type === ADD) {
-        return todoList.push(action.todo);
+        return todoList.concat(action.todo);
     }
     if (action.type === DELETE) {
-        return todoList.splice(action.id);
+        return todoList.filter(todo => todo.id !== action.todo.id);
     }
     if (action.type === UPDATE) {
-        return todoList[action.id] = action.status;
+        return todoList.map(todo=>{
+            if(todo.id===action.todo.id){
+                todo.done=!todo.done;
+                return todo;
+            }
+            return todo;
+        })
     }
-    return todo;
+    return todoList;
 }
 
-export default combineReducers(
-    {
-        todo
-    }
-)
+export default todoList;

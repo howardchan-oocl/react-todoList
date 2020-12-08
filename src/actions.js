@@ -7,17 +7,16 @@ export const addItem = (todo) => {
     };
 }
 
-export const deleteItem = (id) => {
+export const deleteItem = (todo) => {
     return { 
         type: DELETE,
-        id: id
+        todo: todo
     };
 }
 
-export const updateStatus = (id, status) => {
+export const updateStatus = (todo) => {
     return {
         type: UPDATE,
-        id: id,
-        status: status
+        todo: todo,
     };
 }
