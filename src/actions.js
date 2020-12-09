@@ -1,4 +1,4 @@
-import { ADD, DELETE, UPDATE } from './actionTypes';
+import { ADD, DELETE, UPDATE, GET_TODOS } from './actionTypes';
 
 export const addItem = (todo) => {
     return { 
@@ -18,5 +18,12 @@ export const updateStatus = (todo) => {
     return {
         type: UPDATE,
         todo: todo,
+    };
+}
+
+export const getTodoList = (todos) => {
+    return {
+        type: GET_TODOS,
+        todos: todos,
     };
 }

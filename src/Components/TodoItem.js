@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import './TodoItem.css';
+import { updateTodo, deleteTodo } from '../apis/todos';
 
 class TodoItem extends Component {
     onClickToUpdate = () => {
-        this.props.updateStatus(this.props.todo);
+        updateTodo(this.props.todo.id, { ...this.props.todo, done: !this.props.todo.done }).then(response => {
+            this.props.updateStatus(response.data);
+        })
     }
 
     onClickToDelete = () => {
-        this.props.deleteItem(this.props.todo);
+        deleteTodo(this.props.todo.id).then(response => {
+            this.props.deleteItem(response.data);
+        })
     }
 
     render() {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {v4 as uuidv4} from 'uuid';
+import { postTodo } from '../apis/todos';
 
 class TodoGenerator extends Component {
     constructor(props) {
@@ -17,13 +18,9 @@ class TodoGenerator extends Component {
     }
 
     onClick = () => {
-        this.props.addItem(
-            {
-                id: uuidv4(),
-                text:this.state.text,
-                done: false
-            }
-        );
+        postTodo(this.state.text).then(response=>{
+            this.props.addItem(response.data);
+        })
     }
 
     render() {
