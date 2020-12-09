@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {v4 as uuidv4} from 'uuid';
 import { postTodo } from '../apis/todos';
+import { Button } from 'antd';
 
 class TodoGenerator extends Component {
     constructor(props) {
@@ -18,7 +18,7 @@ class TodoGenerator extends Component {
     }
 
     onClick = () => {
-        postTodo(this.state.text).then(response=>{
+        postTodo(this.state.text).then(response => {
             this.props.addItem(response.data);
         })
     }
@@ -29,7 +29,7 @@ class TodoGenerator extends Component {
         return (
             <div>
                 <input type="text" value={text} onChange={this.onChange} />
-                <button onClick={this.onClick}>Add</button>
+                <Button type="primary" onClick={this.onClick}>add todo</Button>
             </div>
         );
     }

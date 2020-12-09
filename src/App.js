@@ -3,29 +3,34 @@ import './App.css';
 import TodoList from './Components/TodoList'
 import DoneListContainer from './Containers/DoneListContainer';
 import NotFound from './Components/NotFound'
-import { BrowserRouter, Link, Switch, Route} from 'react-router-dom';
+import { BrowserRouter, Switch, Route} from 'react-router-dom';
+import Navigation from './Components/Navigation';
+import { Layout } from 'antd';
 
 function App() {
+  const { Header, Sider, Content } = Layout;
+
   return (
     <React.Fragment>
-      <header className="App-header">
-        Hello React!
-      </header>
+      <Layout style={{minHeight:'100vh'}}>
       <BrowserRouter>
-        <ul>
-          <li>
-            <Link to='/list'>go to list page</Link>
-          </li>
-          <li>
-            <Link to='/done'>go to done page</Link>
-          </li>
-        </ul>
-        <Switch>
-          <Route path='/done' component={DoneListContainer}></Route>
-          <Route path='/list' component={TodoList}></Route>
-          <Route path='/' component={NotFound}></Route>
-        </Switch>
+        <Header className='App-header'>
+          Hello React!
+        </Header>
+        <Layout>
+          <Sider style={{background: '#001529'}}>
+            <Navigation />
+          </Sider>
+          <Content>
+            <Switch>
+              <Route path='/done' component={DoneListContainer}></Route>
+              <Route path='/list' component={TodoList}></Route>
+              <Route path='/' component={NotFound}></Route>
+            </Switch>
+          </Content>
+        </Layout>
       </BrowserRouter>
+      </Layout>
     </React.Fragment>
   );
 }

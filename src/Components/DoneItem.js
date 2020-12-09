@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './TodoItem.css';
+import { Row, Col } from 'antd';
 
 class DoneItem extends Component {
     render() {
         return (
-            <div>
-                <button>{this.props.done.text}</button>
-            </div>
+            <Row style={{ borderStyle: 'solid', width: '300px' }}>
+                <Col>{this.props.done.text}</Col>
+            </Row>
         );
     }
 }
