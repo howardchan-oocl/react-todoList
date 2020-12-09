@@ -8,13 +8,7 @@ const todoList = (todoList = [], action) => {
         return todoList.filter(todo => todo.id !== action.todo.id);
     }
     if (action.type === UPDATE) {
-        return todoList.map(todo=>{
-            if(todo.id===action.todo.id){
-                todo.done=!todo.done;
-                return todo;
-            }
-            return todo;
-        })
+        return todoList.map(todo => todo.id === action.todo.id ? { ...todo, done: !todo.done } : todo);
     }
     return todoList;
 }
