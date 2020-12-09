@@ -10,13 +10,13 @@ class TodoGenerator extends Component {
     }
 
     onChange = (event) => {
-        this.setState((
+        this.setState(
             {
                 text: event.target.value
-            }));
+            });
     }
 
-    onClick = (event) => {
+    onClick = () => {
         this.props.addItem(
             {
                 id: uuidv4(),
