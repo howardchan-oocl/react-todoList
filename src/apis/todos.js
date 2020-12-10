@@ -15,3 +15,15 @@ export const deleteTodo = (id) => {
 export const updateTodo = (id, todo) => {
     return api.put(`/todos/${id}`, todo);
 }
+
+export const getLabels = () => {
+    return api.get("/labels");
+}
+
+export const addLabel = (content,color) => {
+    return api.post(`/labels/`, {content, color});
+}
+
+export const deleteLabel = (id) => {
+    return api.delete(`/labels/${id}`);
+}

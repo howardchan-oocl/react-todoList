@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import DoneItem from './DoneItem';
+import DoneItemContainer from '../Containers/DoneItemContainer';
 
 class DoneList extends Component {
     render() {
-        const DoneItemList = this.props.doneList.filter(todo=>todo.done).map(done=><DoneItem done={done} />);
+        const DoneItemList = this.props.doneList.filter(todo=>todo.done).map(done=><DoneItemContainer done={done} />);
 
         return (
             <div>
-                DoneList
+                <h1>DoneList</h1>
                 {DoneItemList}
             </div>
         );

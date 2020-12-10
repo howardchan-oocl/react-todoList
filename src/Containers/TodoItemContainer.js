@@ -2,6 +2,10 @@ import { connect } from 'react-redux';
 import { deleteItem, update } from '../actions';
 import TodoItem from '../Components/TodoItem';
 
+const mapStateToProps = (state) => ({
+    labels: state.labels
+})
+
 const mapDispatchToProps = dispatch => ({
         deleteItem: (todo) => {
             dispatch(deleteItem(todo));
@@ -11,6 +15,6 @@ const mapDispatchToProps = dispatch => ({
         }
 })
 
-const TodoItemContainer = connect(null, mapDispatchToProps)(TodoItem);
+const TodoItemContainer = connect(mapStateToProps, mapDispatchToProps)(TodoItem);
 
 export default TodoItemContainer;

@@ -6,6 +6,7 @@ import NotFound from './Components/NotFound'
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import Navigation from './Components/Navigation';
 import { Layout } from 'antd';
+import ManageLabelContainer from './Containers/ManageLabelContainer';
 
 function App() {
   const { Header, Sider, Content } = Layout;
@@ -25,6 +26,7 @@ function App() {
             <Switch>
               <Route path='/done' component={DoneListContainer}></Route>
               <Route path='/list' component={TodoList}></Route>
+              <Route path='/labels' component={ManageLabelContainer}></Route>
               <Route path='/' component={NotFound}></Route>
             </Switch>
           </Content>

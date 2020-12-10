@@ -13,6 +13,9 @@ class Navigation extends Component {
               <Menu.Item>
                 <Link to='/done'>go to done page</Link>
               </Menu.Item>
+              <Menu.Item>
+                <Link to='/labels'>go to labels page</Link>
+              </Menu.Item>
             </Menu>
           </React.Fragment>
         );

@@ -7,29 +7,32 @@ class TodoItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tag: '',
+            content: '',
         };
     }
 
     onChange = (event) => {
         this.setState(
             {
-                tag: event.target.value
+                content: event.target.value
             });
     }
 
-    onClickToUpdateTag = () => {
+    onClickToAddLabel = () => {
         const todo = this.props.todo;
-        if (todo.tags.filter(tag => tag === this.state.tag).length===0) {
-            updateTodo(todo.id, { ...todo, tags: todo.tags.concat(this.state.tag) }).then(response => {
-                this.props.update(response.data);
-            })
+        const labels = this.props.labels;
+        if (labels.filter(label => label.content === this.state.content).length !== 0) {
+            if(labels.filter(label => label.content === this.state.content)[0].content === this.state.content){
+                updateTodo(todo.id, { ...todo, labelId: todo.labelId.concat(labels.filter(label => label.content === this.state.content)[0].id) }).then(response => {
+                    this.props.update(response.data);
+                })
+            }
         }
     }
 
-    onClickTag = (event) => {
+    onClickLabel = (event) => {
         const todo = this.props.todo;
-        updateTodo(todo.id, { ...todo, tags: todo.tags.filter(tag => tag !== event.target.innerText) }).then(response => {
+        updateTodo(todo.id, { ...todo, labels: todo.labels.filter(label => label !== event.target.innerText) }).then(response => {
             this.props.update(response.data);
         })
     }
@@ -48,28 +51,31 @@ class TodoItem extends Component {
         })
     }
 
+
     render() {
-        const tag = this.state.tag;
+        const content = this.state.content;
 
         return (
-            <Row>
-                <Col>
-                    <Row className='border width1000'>
-                        <Col className={this.props.todo.done ? 'cross flex' : 'flex'} onClick={this.onClickToUpdate}>
-                            {this.props.todo.text}
-                        </Col>
-                        <Col className='alignRight flex'>
-                            {this.props.todo.tags.map((tag) => {
-                                const randomColor = Math.floor(Math.random()*16777215).toString(16);
-                                return <Tag key={tag} color={"#"+randomColor} closable onClick={this.onClickTag}>{tag}</Tag>
-                             })}
-                        </Col>
-                        <Col flex="20px" onClick={this.onClickToDelete}>x</Col>
-                    </Row>
-                </Col>
-                <input className='border' type="text" value={tag} onChange={this.onChange} />
-                <Button type="primary" onClick={this.onClickToUpdateTag}>add tag</Button>
-            </Row>
+            <React.Fragment>
+                <Row>
+                    <Col>
+                        <Row className='border width1000'>
+                            <Col className={this.props.todo.done ? 'cross flex' : 'flex'} onClick={this.onClickToUpdate}>
+                                {this.props.todo.text}
+                            </Col>
+                            <Col className='alignRight flex'>
+                                {this.props.todo.labelId.map((labelId) => {
+                                    const label = this.props.labels.filter(label=>label.id===labelId)[0]
+                                    return <Tag key={label.id} color={label.color}>{label.content}</Tag>
+                                })}
+                            </Col>
+                            <Col flex="20px" onClick={this.onClickToDelete}>x</Col>
+                        </Row>
+                    </Col>
+                    <input className='border' type="text" value={content} onChange={this.onChange} />
+                    <Button type="primary" onClick={this.onClickToAddLabel}>add label</Button>
+                </Row>
+            </React.Fragment>
         );
     }
 }
