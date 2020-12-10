@@ -48,15 +48,15 @@ class TodoItem extends Component {
         return (
             <Row>
                 <Col>
-                    <Row style={{border:'solid', width:'1000px'}}>
-                    <Col flex="auto" className={this.props.todo.done ? 'cross' : ''} onClick={this.onClickToUpdate}>
+                    <Row className='border width1000'>
+                    <Col className={this.props.todo.done ? 'cross flex' : 'flex'} onClick={this.onClickToUpdate}>
                         {this.props.todo.text}
                     </Col>
-                    <Col flex="auto" style={{textAlign:'right'}}>{this.props.todo.tags.map((tag)=><Tag key={tag} onClick={this.onClickTag}>{tag}</Tag>)}</Col>
+                    <Col className='alignRight flex'>{this.props.todo.tags.map((tag)=><Tag key={tag} onClick={this.onClickTag}>{tag}</Tag>)}</Col>
                     <Col flex="20px" onClick={this.onClickToDelete}>x</Col>
                     </Row>
                 </Col>
-                <input type="text" style={{ borderStyle: 'solid' }} value={tag} onChange={this.onChange} />
+                <input className='border' type="text" value={tag} onChange={this.onChange} />
                 <Button type="primary" onClick={this.onClickToUpdateTag}>add tag</Button>
             </Row>
         );
