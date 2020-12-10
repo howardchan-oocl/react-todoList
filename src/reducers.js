@@ -1,4 +1,4 @@
-import { ADD, DELETE, UPDATE, UPDATE_TAG, GET_TODOS } from './actionTypes';
+import { ADD, DELETE, UPDATE, GET_TODOS } from './actionTypes';
 
 const todoList = (todoList = [], action) => {
     if (action.type === ADD) {
@@ -8,10 +8,7 @@ const todoList = (todoList = [], action) => {
         return todoList.filter(todo => todo.id !== action.todo.id);
     }
     if (action.type === UPDATE) {
-        return todoList.map(todo => todo.id === action.todo.id ? { ...todo, done: !todo.done } : todo);
-    }
-    if (action.type === UPDATE_TAG) {
-        return todoList.map(todo => todo.id === action.todo.id ? { ...todo, tags: action.todo.tags } : todo);
+        return todoList.map(todo => todo.id === action.todo.id ? action.todo : todo);
     }
     if (action.type === GET_TODOS) {
         return [].concat(action.todos);
